@@ -1,0 +1,421 @@
+﻿@model Pinga.Models.Reporting
+@{
+    ViewData["Title"] = "Summary Report";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    string ProjectNameExist = Convert.ToString(ViewData["ProjectNameExist"]);
+}
+<style>
+    input#IsActive {
+        vertical-align: text-bottom;
+    }
+
+    .chosen-container-single .chosen-single {
+        color: #999 !important;
+    }
+</style>
+
+
+@{
+    <div class="panel panel-default">
+        <div class="alert alert-danger" id="Error" style="display: none;margin-top: 20px;">
+            <strong><span class="errormessage"></span></strong>
+        </div>
+        @if (!string.IsNullOrEmpty(ProjectNameExist))
+        {
+            <div class="alert alert-danger" style="margin-top: 20px;">
+                <strong><span>@ProjectNameExist</span></strong>
+            </div>
+        }
+        <div class="panel-heading">
+            <h4 class="panel-title">
+                OutStanding Summary Report
+            </h4>
+        </div>
+        <div class="panel-body">
+            <div class="row clearfix">
+
+                <div class="clearfix"></div>
+                <div class="col-lg-4 col-md-12 col-sm-4 form-group">
+                    <label class="control-label">
+                        Select Project&nbsp; <label style="color: red;margin-bottom: 0px;">*</label>
+                    </label>
+                    @Html.DropDownListFor(model => model.ProjectID, new SelectList(ViewBag.ProjectsList, "Value", "Text"), new { @class = "form-control chosen-select", @maxlength = 500, @rows = "7", @multiple = "true", @onchange = "javascript:GetBlockName();" })
+                </div>
+                <div class="col-lg-4 col-md-10  form-group">
+                    <label class="control-label">
+                        Block Name &nbsp; <label style="color: red;margin-bottom: 0px;">*</label>
+                    </label>
+                    @*@Html.HiddenFor(Model => Model.UnitTypeID)*@
+                    <select id="BlockID" name="BlockID" class="form-control" multiple="multiple" onchange="javascript:GetAppNo();"></select>
+                </div>
+                <div class="clearfix"></div>
+
+                <div class="col-lg-4 col-md-10  form-group">
+                    <label class="control-label">
+                        App No &nbsp; <label style="color: red;margin-bottom: 0px;">*</label>
+                    </label>
+                    @*@Html.HiddenFor(Model => Model.UnitTypeID)*@
+                    <select id="AppID" name="AppID" class="form-control" multiple="multiple"></select>
+                </div>
+                <div class="col-lg-4 col-md-12 col-sm-4 form-group">
+                    <label class="control-label">
+                        From&nbsp; <label style="color: red;margin-bottom: 0px;">*</label>
+                    </label>
+                    @Html.TextBox("From", "", new { @class = "datepicker", @maxlength = 500, @rows = "7", @style = "width:48%;", @placeholder = "mm-dd-yy" })
+                </div>
+                <div class="col-lg-4 col-md-12 col-sm-4 form-group">
+                    <label class="control-label">
+                        To&nbsp; <label style="color: red;margin-bottom: 0px;">*</label>
+                    </label>
+                    @Html.TextBox("TO", "", new { @class = "datepicker", @maxlength = 500, @rows = "7", @style = "width:48%;",@placeholder= "mm-dd-yy" })
+                </div>
+                <div class="form-group col-md-12">
+                    <input type="submit" class="btn btn-primary pull-left" onclick="return Viewreport1()" style="margin-right: 12px;" value="View Report" />
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <script type="text/javascript">
+     $(document).ready(function () {
+        debugger;
+         $("#From").datepicker({ dateFormat: 'mm-dd-yy' });
+         $("#TO").datepicker({ dateFormat: 'mm-dd-yy' });
+       //Edit Loader
+
+     });
+
+        function Viewreport1() {
+           
+            Pageload();
+            return true;
+        }
+
+      function Pageload()
+      {
+        
+          var Appid = $("#AppID").val();
+
+        $.ajax({
+            url: '@Url.Action("GetAllReportData", "Report")',
+            cache: false,
+            data: { 'AppID': Appid.join(','), 'From': $("#From").val(), 'TO': $("#TO").val()},
+
+            success: function (response)
+            {
+                $("#RawDatas table tbody tr:not(:first)").remove();
+                $("#RawDatas table tbody tr:eq(0)").show();
+                for (var i = 0; i < response.length; i++) {
+                    var table = $("#RawDatas table tbody tr:eq(0)").clone(true);
+
+                    $(".Appno", table).html(response[i].AppNo);
+                    $(".unitno", table).html(response[i].UnitNo);
+                    $(".unitarea", table).html(response[i].Area);
+                    $(".towr", table).html(response[i].TowerName);
+                    $(".FloorName", table).html(response[i].BlockName);
+                    $(".CustomerName", table).html(response[i].CustName);
+                    $(".Status", table).html(response[i].status);
+                    //$(".CheckBounce", table).html(CheckBounce);
+
+                    $("#RawDatas table").append(table);
+
+                }
+                $("#RawDatas table tbody tr:eq(0)").hide();
+
+            }
+
+        });
+
+
+        }
+
+    </script>
+
+    <link href="~/Design/css/jquery-ui.min.css" rel="stylesheet" />
+    <script src="~/Design/js/jquery-ui-1.12.1.min.js"></script>
+    <style>
+
+        .control-label {
+            float: left;
+            line-height: 270%;
+        }
+
+        div.app-page-title {
+            background-color: transparent !important;
+        }
+
+        div.page-title-wrapper {
+            background-color: #80C54B;
+        }
+
+
+        .chosen-container-single .chosen-single {
+            height: 32PX !important;
+            line-height: 2.3;
+            color: #495057;
+            background-color: #fff !important;
+            background-clip: padding-box;
+            border: 1px solid #ced4da;
+            border-radius: .25rem;
+            background: -webkit-gradient(linear, 50% 0, 50% 100%, color-stop(20%, #fff), color-stop(50%, #ffffff), color-stop(52%, #fff), color-stop(100%, #ffffff)) !important;
+            box-shadow: 0 0 3px #fff inset, 0 1px 1px rgba(255, 255, 255, 0.1);
+        }
+    </style>
+
+    <style>
+        .main_loader {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: fixed;
+            z-index: 4;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            background-color: #00000026;
+        }
+
+        .loader-circle {
+            border-left: 3px solid #57bf65;
+            border-bottom: 3px solid #3fbb74;
+            border-radius: 50%;
+            margin-left: 10%;
+            width: 100px;
+            height: 100px;
+            animation: spin 1.5s linear infinite;
+        }
+
+        @@keyframes spin {
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+
+
+
+
+
+
+
+    <div class="main-card mb-3 card ">
+
+        <div class="accordion-wrapper" style="border-bottom: none;">
+            <div class="card ">
+                <div id="headingOne" class="card-header acc-header">
+                    <div style="width:100%;">
+                        <button type="button" data-toggle="collapse" data-target="#collapseOne1" aria-expanded="true" aria-controls="collapseOne" class="  col-md-2 text-left m-0 p-0 btn btn-link text-dark btn-block accordion-btn">
+                            <div class="m-0 p-0 h5-text">
+
+                                OutStanding Summary Report
+                            </div>
+                        </button>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="alert alert-danger alert-dismissible" id="divError" style="display:none;">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            </div>
+            <div class="alert alert-success alert-dismissible" id="divSuccess" style="display:none;">
+                <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            </div>
+
+            <div role="alert">
+                @if (TempData["sucess"] != null)
+                {
+                    <p class="alert alert-success alert-dismissible" id="successMessage">
+                        @TempData["sucess"]
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    </p>
+                }
+                @if (TempData["delete"] != null)
+                {
+                    <p class="alert alert-danger alert-dismissible" id="successMessage">
+                        @TempData["delete"]
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                    </p>
+                }
+                <div class="alert alert-danger" id="Error" style="display: none;margin-top: 20px;">
+                    <strong><span class="errormessage"></span></strong>
+                </div>
+
+            </div>
+            <div class="row clearfix p_l_15 p_r_15">
+                <div class="form-group table-responsive" id="RawDatas">
+
+
+                    <table id="myTable" class="table table-striped table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th>
+                                    App No
+                                </th>
+                                <th>
+                                    Unit No
+                                </th>
+                                <th>
+                                    Unit Area
+                                </th>
+
+                                <th>
+                                    Towr
+                                </th>
+                                <th>FloorName</th>
+                                <th>CustomerName</th>
+                                <th>Status</th>
+                                <th>Check Bounce</th>
+
+
+
+
+
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td style="width:60px;text-align:center;">
+                                    <span class="Appno"></span>
+                                </td>
+                                <td style="width:60px;text-align:center;">
+                                    <span class="unitno"></span>
+                                </td>
+                                <td style="width:60px;text-align:center;">
+                                    <span class="unitarea"></span>
+                                </td>
+                                <td style="width:60px;text-align:center;">
+
+                                    <span class="towr"></span>
+                                </td>
+                                <td style="width:60px;text-align:center;">
+
+                                    <span class="FloorName"></span>
+                                </td>
+                                <td style="width:60px;text-align:center;">
+
+                                    <span class="CustomerName"></span>
+                                </td>
+                                <td style="width:60px;text-align:center;">
+
+                                    <span class="Status"></span>
+                                </td>
+                                <td style="width:60px;text-align:center;">
+
+                                    <span class="CheckBounce"></span>
+                                </td>
+
+
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="~/Design/chosen/chosen.jquery.min.js"></script>
+    <link href="~/Design/chosen/chosen.min.css" rel="stylesheet" />
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#loader').show();
+            $('.errormessage').html('');
+            $('#Error').hide();
+
+            $('#loader').hide();
+            $(".chosen-select").chosen({
+                placeholder_text: "--Please Select--",
+                no_results_text: "No result found"
+            });
+            $('#BlockID').chosen();
+            $('#AppID').chosen();
+
+        });
+        function GetBlockName() {
+
+            var ProjectID1 = $("#ProjectID").val();
+
+            $.ajax({
+                type: "GET",
+                cache: false,
+                url: "/Report/GetBlockNameByID",
+                data: { 'ProjectID': ProjectID1.join(',') },
+                //data: {}JSON.stringify(ProjectID),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                async: false,
+                success: function (response) {
+
+                    debugger;
+                    var option = "<option value=-1> Select All </option>";
+                    if (response.length > 0) {
+                        debugger;
+                        for (var i = 0; i < response.length; i++) {
+                            debugger;
+                            option = option + "<option value=" + response[i].BlockID + ">" + response[i].BlockName + "</option>";
+                        }
+                    }
+                    else {
+                        var option = "<option value=-1> Select All </option>";
+                        $("#BlockID").html(option);
+                        $('#BlockID').trigger("chosen:updated");
+                    }
+
+                    $("#BlockID").html(option);
+                    $('#BlockID').trigger("chosen:updated");
+
+                },
+
+
+            });
+
+        }
+
+        function GetAppNo() {
+
+            var BlockID1 = $("#BlockID").val();
+            $.ajax({
+                type: "GET",
+                cache: false,
+                url: "/Report/GetAppnoByID",
+                data: { 'BlockID': BlockID1.join(',') },
+                //data: {}JSON.stringify(ProjectID),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                async: false,
+                success: function (response) {
+                    debugger;
+                    var option = "<option value=-1> Select All </option>";
+                    if (response.length > 0) {
+                        debugger;
+                        for (var i = 0; i < response.length; i++) {
+                            debugger;
+                            option = option + "<option value=" + response[i].AppID + ">" + response[i].AppNo + "</option>";
+                        }
+                    }
+
+                    $("#AppID").html(option);
+                    $('#AppID').trigger("chosen:updated");
+
+                }
+            });
+
+        }
+
+    </script>
+}
+
+

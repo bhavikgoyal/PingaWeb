@@ -1,0 +1,40 @@
+﻿.avatar-icon-add .avatar-icon i {
+    line-height: 27px;
+}
+.app-header__logo .logo-src {
+  height: 28px;
+    width: 120px !important;
+    background: url(../images/logomain.png);
+}
+
+.app-logo {
+   height: 28px;
+    width: 120px !important;
+    background: url(../images/logomain.png);
+}
+
+.app-sidebar.sidebar-text-light .vertical-nav-menu li a i.metismenu-icon {
+    opacity: 1 !important;
+}
+
+.vertical-nav-menu li a {
+    color: #ffffff !important;
+}
+
+.vertical-nav-menu ul>li>a {
+    color: #ffffff !important;
+}
+
+.vertical-nav-menu i.metismenu-state-icon, .vertical-nav-menu i.metismenu-icon {
+    opacity: 1 !important;
+   
+}
+
+
+.vertical-nav-menu ul>li>a.mm-active {
+    background: #3e69d5 !important;
+}
+
+.vertical-nav-menu li a:hover {
+    background: #3e69d5 !important;
+}

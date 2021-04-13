@@ -1,0 +1,839 @@
+﻿<!doctype html>
+<html lang="en">
+<head>
+
+    <title>@ViewBag.Title </title>
+    <!--copyright by avyakinfoways-->
+    <!--<link href="css/style.css" rel="stylesheet" />-->
+    <link href="~/Design/css/custom.css" rel="stylesheet" />
+    <link href="~/Design/css/bootstrap_us.css" rel="stylesheet" />
+    <link href="~/Design/css/animate.css" rel="stylesheet" />
+
+
+    <link href="~/Design/fontaweasome_us.css" rel="stylesheet" />
+    
+    <link href="~/Design/css/ionicons.css" rel="stylesheet" />
+    <link href="~/Design/css/fonts_svg.css" rel="stylesheet" />
+    <link href="~/Design/css/cropper.css" rel="stylesheet" />
+    <link href="~/Design/css/ladda.css" rel="stylesheet" />
+    <link href="~/Design/css/hamburger.css" rel="stylesheet" />
+    <link href="~/Design/css/fullcalendar.css" rel="stylesheet" />
+    <link href="~/Design/css/modify.css" rel="stylesheet" />
+    <link href="~/Design/css/main.css" rel="stylesheet" />
+    <link href="~/Design/css/Loader.css" rel="stylesheet" />
+    <script src="~/Design/lib/chart-master/Chart.js"></script>
+    <script src="~/Design/lib/jquery/jquery.min.js"></script>
+    <script src="~/Design/DP/js/bootstrap-datepicker.min.js"></script>
+    <style>
+        form {
+            width: 100%;
+        }
+
+        .sb-fa {
+            text-align: center;
+            width: 34px;
+            height: 34px;
+            line-height: 34px;
+            position: absolute;
+            left: 5px;
+            top: 50%;
+            margin-top: -17px;
+            font-size: 1.5rem;
+            opacity: 0.7;
+            transition: color 300ms;
+            color: #fff;
+        }
+    </style>
+    <script>
+        $(document).ready(function () {
+            $('#accordion').click(function () {
+                if ($('#accordion').hasClass('fa-chevron-down')) {
+                    $('#accordion').removeClass('fa-chevron-down');
+                    $('#accordion').addClass('fa-chevron-right');
+                } else {
+                    $('#accordion').addClass('fa-chevron-down');
+                    $('#accordion').removeClass('fa-chevron-right');
+                }
+            });
+        });
+    </script>
+    <style>
+        .acc-header {
+            background-color: #edf7f3;
+        }
+
+        .acc-icon {
+            margin-right: 1%;
+            font-size: 20px;
+            align-items: center;
+            align-content: center;
+            text-align: center;
+            padding: .5rem;
+            color: #f0c6dc;
+            background: #fff;
+            box-shadow: 0 0.46875rem 2.1875rem rgba(4, 9, 20, 0.03), 0 0.9375rem 1.40625rem rgba(4, 9, 20, 0.03), 0 0.25rem 0.53125rem rgba(4, 9, 20, 0.05), 0 0.125rem 0.1875rem rgba(4, 9, 20, 0.03);
+            border-radius: .25rem;
+            width: 35px;
+            height: 35px;
+        }
+
+        .h5-text {
+            font-size: 1.25rem;
+            font-weight: 400;
+            line-height: 1.2;
+            color: inherit;
+        }
+
+        .app-theme-white.app-container {
+            background: #fbfcfc;
+        }
+
+        .btn-block {
+            float: left;
+        }
+
+        .chosen-container-single .chosen-single {
+            height: 36px;
+            line-height: 36px;
+        }
+
+            .chosen-container-single .chosen-single div b {
+                width: 20px;
+                height: 20px;
+            }
+
+            .chosen-container-single .chosen-single div {
+                top: 20%;
+            }
+
+        .app-main .app-main__inner {
+            padding: 0px 15px;
+        }
+
+        .acc-icon {
+            padding: .3rem;
+            color: #d968a3;
+            background: #fff;
+            box-shadow: 0 0.46875rem 2.1875rem rgba(4, 9, 20, 0.03), 0 0.9375rem 1.40625rem rgba(4, 9, 20, 0.03), 0 0.25rem 0.53125rem rgba(4, 9, 20, 0.05), 0 0.125rem 0.1875rem rgba(4, 9, 20, 0.03);
+            width: 28px;
+            height: 28px;
+            margin-right: 4%;
+        }
+
+        .vertical-nav-menu li a {
+            margin: 0.5rem 0;
+        }
+
+        .closed-sidebar .app-header__logo span {
+            font-size: 0.9rem !important;
+            padding-right: 13px;
+        }
+
+        .dropdown-menu {
+            box-shadow: 0 0.46875rem 2.1875rem rgba(4, 9, 20, 0.03), 0 0.9375rem 1.40625rem rgba(4, 9, 20, 0.03), 0 0.25rem 0.53125rem rgba(4, 9, 20, 0.05), 0 0.125rem 0.1875rem rgba(4, 9, 20, 0.03);
+            margin: .125rem;
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            z-index: 1000;
+            display: none;
+            float: left;
+            min-width: 12rem;
+            padding: -0.0rem 0;
+            margin: .125rem 0 0;
+            font-size: .88rem;
+            color: #495057;
+            text-align: left;
+            list-style: none;
+            background-color: #fff;
+            border: 1px solid rgba(0, 0, 0, 0.15);
+            border-radius: .25rem;
+        }
+
+        .dropdown-item:hover, .dropdown-item:focus {
+            color: #16181b;
+            text-decoration: none;
+            background-color: royalblue;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="main-card mb-3 card -block-example">
+        element
+        @*<div class="card-header">Header</div>
+        <div class="card-body">
+            <p>done</p>
+        </div>*@
+    </div>
+    <div class="app-container app-theme-white body-tabs-shadow fixed-header">
+
+
+        <!--Top navigation starts here-->
+        <div class="app-header  header-shadow">
+            <div class="app-header__logo">
+
+                @if (false == true)
+                {
+                    //window.location.href = '/Security/UserLogIn';
+                    <a href="~/Security/UserLogIn" class=""></a>
+                }
+                else
+                {
+
+                    <span class="font-weight-bold font-size-lg"><img src="~/Design/img/project_logo.png" style="height:59px;width:150px; margin-top:-14px;" /></span>
+                }
+
+
+                <div class="header__pane ml-auto">
+                    <div>
+                        <button type="button" class="hamburger close-sidebar-btn hamburger--elastic" data-class="closed-sidebar">
+                            <span class="hamburger-box">
+                                <span class="hamburger-inner"></span>
+                            </span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="app-header__mobile-menu">
+                <div>
+                    <button type="button" class="hamburger hamburger--elastic mobile-toggle-nav">
+                        <span class="hamburger-box">
+                            <span class="hamburger-inner"></span>
+                        </span>
+                    </button>
+                </div>
+            </div>
+            <div class="app-header__menu">
+                <span>
+                    <button type="button" class="btn-icon btn-icon-only btn btn-primary btn-sm mobile-toggle-header-nav">
+                        <span class="btn-icon-wrapper">
+                            <i class="fa fa-ellipsis-v fa-w-6"></i>
+                        </span>
+                    </button>
+                </span>
+            </div>    <div class="app-header__content">
+                <div class="app-header-left">
+
+                    <button class="close"></button>
+
+
+                </div>
+    
+                <div class="app-header-right">
+
+                    <div class="header-nav collaps ">
+                        <ul class="nav">
+                            <li class="dropdown" style="margin-top: -35px;">
+
+
+
+                                <ul class="dropdown-menu dpmenu dropdown-menu2">
+
+
+                                    <li><a href="/Security/Logout" style="color:white;background:none;"><i class="fa fa-power-off"></i> Logout   </a></li>
+
+                                </ul>
+                            </li>
+                            <!-- end: User Dropdown -->
+                        </ul>
+                    </div>
+
+                </div>
+                </div>
+        </div>
+
+        <div class="app-main">
+            <!--main sidebar starts here-->
+            <div class="app-sidebar bg-happy-green sidebar-shadow">
+                <div class="app-header__logo">
+                    <div class="logo-src"></div>
+                    <div class="header__pane ml-auto">
+                        <div>
+                            <button type="button" class="hamburger close-sidebar-btn hamburger--elastic" data-class="closed-sidebar">
+                                <span class="hamburger-box">
+                                    <span class="hamburger-inner"></span>
+                                </span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="app-header__mobile-menu">
+                    <div>
+                        <button type="button" class="hamburger hamburger--elastic mobile-toggle-nav">
+                            <span class="hamburger-box">
+                                <span class="hamburger-inner"></span>
+                            </span>
+                        </button>
+                    </div>
+                </div>
+                <div class="app-header__menu">
+                    <span>
+                        <button type="button" class="btn-icon btn-icon-only btn btn-primary btn-sm mobile-toggle-header-nav">
+                            <span class="btn-icon-wrapper">
+                                <i class="fa fa-ellipsis-v fa-w-6"></i>
+                            </span>
+                        </button>
+                    </span>
+                </div>
+                @if (true == true)
+                {
+            <div class="scrollbar-sidebar">
+                <div class="app-sidebar__inner ">
+                    <ul class="vertical-nav-menu">
+                        <li>
+                            <a href="~/Dashboard/Dashboard">
+                                <i class="metismenu-icon pe-7s-home"></i>
+                                Home
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="vertical-nav-menu">
+                        <li class="">
+                            <a href="#">
+                                <i class="metismenu-icon pe-7s-hammer"></i>
+                                Control Panel
+                                <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
+                            </a>
+                            <ul>
+                                <li>
+                                    <a href="#">
+                                        <i class="metismenu-icon pe-7s-monitor"></i>
+                                        Masters
+                                        <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
+                                    </a>
+
+                                    <ul>
+                                        <li>
+                                            <a href="~/Country/Index">
+                                                <i class="metismenu-icon pe-7s-monitor"></i>
+                                                Country
+
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="~/State/Index">
+                                                <i class="metismenu-icon pe-7s-monitor"></i>
+                                                State
+
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="~/City/Index">
+                                                <i class="metismenu-icon pe-7s-monitor"></i>
+                                                City
+
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="~/Fin_Year/Index">
+                                                <i class="metismenu-icon pe-7s-monitor"></i>
+                                                Fin Year
+
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="~/Company/Index">
+                                                <i class="metismenu-icon pe-7s-monitor"></i>
+                                                Company
+
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="~/Location/Index">
+                                                <i class="metismenu-icon pe-7s-monitor"></i>
+                                                Location
+
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+
+
+                                <li>
+                                    <a href="#">
+                                        <i class="metismenu-icon pe-7s-monitor"></i>
+                                        Security
+                                        <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
+                                    </a>
+                                    <ul>
+                                        <li>
+                                            <a href="~/Role_Creation/Index">
+                                                <i class="metismenu-icon pe-7s-monitor"></i>
+                                                Role Creation
+
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="~/User/Index">
+                                                <i class="metismenu-icon pe-7s-monitor"></i>
+                                                User
+
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="~/Menu_Permission/Index">
+                                                <i class="metismenu-icon pe-7s-monitor"></i>
+                                                Menu Permission
+
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="~/Location/Index">
+                                                <i class="metismenu-icon pe-7s-monitor"></i>
+                                                Location
+
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="~/Extended_Security/Index">
+                                                <i class="metismenu-icon pe-7s-monitor"></i>
+                                                Extended Security
+
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+
+                                <li>
+                                    <a href="~/Configuration/Index">
+                                        <i class="metismenu-icon pe-7s-monitor"></i>
+                                        Configuration
+                                        <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
+                                    </a>
+                                    <ul>
+                                        <li>
+                                            <a href="~/Auto_series_config/Index">
+                                                <i class="metismenu-icon pe-7s-monitor"></i>
+                                                Auto series Config
+
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="~/Process_Author/Index">
+                                                <i class="metismenu-icon pe-7s-monitor"></i>
+                                                Process Author
+
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+
+
+                            </ul>
+
+                            @*<li>
+                        <a href="~/ManagerUsers/Index">
+                            <i class="metismenu-icon pe-7s-users"></i>
+                            Users
+
+                        </a>
+                    </li>*@
+                        <li class="">
+                            <a href="~/Maintenance/Index">
+                                <i class="metismenu-icon pe-7s-hammer"></i>
+                                Maintenance
+                                <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
+                            </a>
+
+                            <ul>
+                                <li>
+                                    <a href="~/Inventory/Index">
+                                        <i class="metismenu-icon pe-7s-monitor"></i>
+                                        Inventory
+                                        <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
+                                    </a>
+                                    <ul>
+                                        <li>
+                                            <a href="~/project/Index">
+                                                <i class="metismenu-icon pe-7s-monitor"></i>
+                                                Project
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="~/project_Allocation/Index">
+                                                <i class="metismenu-icon pe-7s-monitor"></i>
+                                                Project Allocation
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <i class="metismenu-icon pe-7s-monitor"></i>
+                                                Block
+                                                <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
+                                            </a>
+                                            <ul>
+                                                <li>
+                                                    <a href="~/Block_Type/Index">
+                                                        <i class="metismenu-icon pe-7s-monitor"></i>
+                                                        Block Type
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="~/Block/Index">
+                                                        <i class="metismenu-icon pe-7s-monitor"></i>
+                                                        Block
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        <li>
+                                            <a href="#">
+                                                <i class="metismenu-icon pe-7s-monitor"></i>
+                                                Unit
+                                                <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
+                                            </a>
+                                            <ul>
+                                                <li>
+                                                    <a href="~/Unit_Type/Index">
+                                                        <i class="metismenu-icon pe-7s-monitor"></i>
+                                                        Unit Type
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="~/Change_Unit_Area/Index">
+                                                        <i class="metismenu-icon pe-7s-monitor"></i>
+                                                        Change Unit Area
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="~/Unit/Index">
+                                                        <i class="metismenu-icon pe-7s-monitor"></i>
+                                                        Unit
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="~/Edit_Unit/Index">
+                                                        <i class="metismenu-icon pe-7s-monitor"></i>
+                                                        Edit Unit
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="~/Split_Unit/Index">
+                                                        <i class="metismenu-icon pe-7s-monitor"></i>
+                                                        Split Unit
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="~/Merge_Unit/Index">
+                                                        <i class="metismenu-icon pe-7s-monitor"></i>
+                                                        Merge Unit
+                                                    </a>
+                                                </li>
+
+                                            </ul>
+                                        <li>
+                                        </li>
+                                    </ul>
+                                </li>
+
+                                <li>
+                                    <a href="#">
+                                        <i class="metismenu-icon pe-7s-monitor"></i>
+                                        Email/SMS
+                                        <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
+                                    </a>
+                                    <ul>
+                                        <li>
+                                            <a href="~/Send_sms/Index">
+                                                <i class="metismenu-icon pe-7s-monitor"></i>
+                                                Send SMS
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="~/Send_Email/Index">
+                                                <i class="metismenu-icon pe-7s-monitor"></i>
+                                                Send Email
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="metismenu-icon pe-7s-monitor"></i>
+                                        Charge
+                                        <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
+                                    </a>
+                                    <ul>
+                                        <li>
+                                            <a href="~/Charge/Index">
+                                                <i class="metismenu-icon pe-7s-monitor"></i>
+                                                Charge
+                                                <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
+                                            </a>
+                                            <ul>
+                                                <li>
+                                                    <a href="~/Charge_Category/Index">
+                                                        <i class="metismenu-icon pe-7s-monitor"></i>
+                                                        Charge Category
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="~/Charge/Index">
+                                                        <i class="metismenu-icon pe-7s-monitor"></i>
+                                                        Charge
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <a href="~/Charge_Allocation/Index">
+                                                <i class="metismenu-icon pe-7s-monitor"></i>
+                                                Charge Allocation
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="metismenu-icon pe-7s-monitor"></i>
+                                        Masters
+                                        <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
+                                    </a>
+                                    <ul>
+                                        <li>
+                                            <a href="~/Bank/Index">
+                                                <i class="metismenu-icon pe-7s-monitor"></i>
+                                                Bank
+                                                <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
+                                            </a>
+                                            <ul>
+                                                <li>
+                                                    <a href="~/Bank/Index">
+                                                        <i class="metismenu-icon pe-7s-monitor"></i>
+                                                        Bank
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="~/Account/Index">
+                                                        <i class="metismenu-icon pe-7s-monitor"></i>
+                                                        Account
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <a href="~/Tax/Index">
+                                                <i class="metismenu-icon pe-7s-monitor"></i>
+                                                Tax
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="~/UOM/Index">
+                                                <i class="metismenu-icon pe-7s-monitor"></i>
+                                                UOM
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="~/Profession/Index">
+                                                <i class="metismenu-icon pe-7s-monitor"></i>
+                                                Profession
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="~/Salutation/Index">
+                                                <i class="metismenu-icon pe-7s-monitor"></i>
+                                                Solutation
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="~/Relation/Index">
+                                                <i class="metismenu-icon pe-7s-monitor"></i>
+                                                Relation
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="~/Auto_Series/Index">
+                                                <i class="metismenu-icon pe-7s-monitor"></i>
+                                                Auto Series
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="~/Interest_Plan/Index">
+                                                <i class="metismenu-icon pe-7s-monitor"></i>
+                                                Interest Plan
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="#">
+                                                <i class="metismenu-icon pe-7s-monitor"></i>
+                                                Meter
+                                                <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
+                                            </a>
+                                            <ul>
+                                                <li>
+                                                    <a href="~/New_Meter/Index">
+                                                        <i class="metismenu-icon pe-7s-monitor"></i>
+                                                        New Meter
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="~/Edit_Meter/Index">
+                                                        <i class="metismenu-icon pe-7s-monitor"></i>
+                                                        Edit Meter
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="~/Meter_Mapping/Index">
+                                                        <i class="metismenu-icon pe-7s-monitor"></i>
+                                                        Meter Mapping
+                                                    </a>
+                                                </li>
+                                                <li>
+                                                    <a href="~/Meter_Mapping_Edit/Index">
+                                                        <i class="metismenu-icon pe-7s-monitor"></i>
+                                                        Meter Mapping Edit
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="metismenu-icon pe-7s-monitor"></i>
+                                        Configuration
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="~/Transaction/Index">
+                                        <i class="metismenu-icon pe-7s-monitor"></i>
+                                        Transaction
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="~/Process/Index">
+                                        <i class="metismenu-icon pe-7s-monitor"></i>
+                                        Process
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="~/Upload_Recipet/Index">
+                                        <i class="metismenu-icon pe-7s-monitor"></i>
+                                        Upload Recipet
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="~/Import/Index">
+                                        <i class="metismenu-icon pe-7s-monitor"></i>
+                                        Import
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="~/ Customer_Information/Index">
+                                        <i class="metismenu-icon pe-7s-monitor"></i>
+                                        Customer Information
+                                    </a>
+                                </li>
+
+                            </ul>
+
+
+
+
+
+                        <li class="">
+                            <a href="~/Reporting/Index">
+                                <i class="metismenu-icon pe-7s-hammer"></i>
+                                Reporting
+                                <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
+                            </a>
+                            <ul>
+                                <li>
+                                    <a href="#">
+                                        <i class="metismenu-icon pe-7s-monitor"></i>
+                                        Reports
+                                        <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
+                                    </a>
+
+                                    <ul>
+                                        <li>
+                                            <a href="~/Report/Reporting">
+                                                <i class="metismenu-icon pe-7s-calculator"></i>
+                                                Outstanding Summary Report
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="~/Report/AreaWiseReport">
+                                                <i class="metismenu-icon pe-7s-bell"></i>
+                                                Area wise Detailed Report
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="~/Report/ProjectWiseSumaryReport">
+                                                <i class="metismenu-icon pe-7s-bell"></i>
+                                                Project wise Outstanding Summary
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="~/Report/AllChequeDetail">
+                                                <i class="metismenu-icon pe-7s-bell"></i>
+                                                All cheque Detail
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="~/Report/AllInvoiceDetail">
+                                                <i class="metismenu-icon pe-7s-bell"></i>
+                                                All Invoice Detail
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href="~/Report/MonthlyBillCollection">
+                                                <i class="metismenu-icon pe-7s-bell"></i>
+                                                Monthly Bill Collection
+                                            </a>
+                                        </li>
+
+
+
+                                    </ul>
+                            </ul>
+
+                </div>
+            </div>
+
+                }
+
+            </div>
+            <!--main sidebar ends here-->
+            <!--dashboard header starts here-->
+            <div class="app-main__outer">
+                <div class="app-main__inner">
+                    <div class="app-main__inner element-block-example">
+                        @RenderBody()
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+
+
+
+    <script src="/Design/js/javascript_main.js"></script>
+
+    
+    <style>
+        .chosen-container-single .chosen-single {
+            height: calc(2.25rem + 2px);
+            line-height: 2.5;
+            color: #495057;
+            background-color: #fff !important;
+            background-clip: padding-box;
+            border: 1px solid #ced4da;
+            border-radius: .25rem;
+            background: -webkit-gradient(linear, 50% 0, 50% 100%, color-stop(20%, #fff), color-stop(50%, #ffffff), color-stop(52%, #fff), color-stop(100%, #ffffff)) !important;
+            box-shadow: 0 0 3px #fff inset, 0 1px 1px rgba(255, 255, 255, 0.1);
+        }
+    </style>
+
+</body>
+</html>

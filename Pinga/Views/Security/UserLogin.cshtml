@@ -1,0 +1,303 @@
+﻿
+@model Pinga.Models.SecurityClass
+
+@{
+    Layout = null;
+    ViewBag.Title = " Dashboard";
+
+}
+
+
+<!doctype html>
+
+<html lang="en">
+<head>
+
+    <!--copyright by avyakinfoways-->
+    <!--<link href="css/style.css" rel="stylesheet" />-->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="Dashboard">
+    <meta name="keyword" content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
+
+    <link href="~/Design/css/hamburger.css" rel="stylesheet" />
+    <link href="~/Design/css/bootstrap_us.css" rel="stylesheet" />
+    <link href="~/Design/css/modify.css" rel="stylesheet" />
+    <link href="~/css/fullcalendar.css" rel="stylesheet" />
+
+    <link href="~/Design/css/main.css" rel="stylesheet" />
+    <script src="~/Design/js/javascript_main.js"></script>
+    <script src="~/Design/lib/jquery/jquery.min.js"></script>
+    
+
+    <script src="~/lib/Validation.js"></script>
+</head>
+<style type="text/css">
+    .slider-content h2 {
+        font-weight: 600;
+        font-size: 60px;
+        margin-bottom: 5%;
+    }
+
+    .slider-content p {
+        font-weight: 600;
+    }
+
+    .slick-slider .slide-img-bg {
+        opacity: 0.6;
+    }
+
+    .bg-plum-plate {
+        background-image: linear-gradient(to right, #434343 0%, black 100%) !important;
+    }
+
+    .slider-content h3 {
+        font-size: 50px !important;
+        text-transform: uppercase;
+        font-weight: 600 !important;
+        margin-bottom: 5%;
+    }
+
+    .bg-sunny-morning {
+        background-image: linear-gradient(to right, #434343 0%, black 100%) !important;
+    }
+
+    .slick-slider .slider-content p {
+        opacity: 0.9 !important;
+    }
+
+    .sign_in {
+        font-size: 16px;
+        padding: 3px 10px;
+    }
+
+    .app-container {
+        background-image: url('img/socitymanagement1.jpg');
+    }
+
+    .logo-mid-login {
+        width: 400px;
+        height: auto;
+        margin-top: -14px;
+        margin-bottom: 20px;
+        /*  position: absolute;
+         top: -100px;
+         left: 85px; */
+    }
+
+    .bg-premium-dark {
+        background-image: linear-gradient(to right, #434343 0%, black 100%) !important;
+    }
+
+    @@media only screen and (max-width: 600px) {
+        .logo-mid-login {
+            width: 100% !important;
+        }
+    }
+    .login100-more {
+        width: calc(100% - 600px);
+        min-height: 100vh;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-position: center;
+        position: relative;
+        z-index: 1;
+    }
+    .login100-form {
+        width: 600px;
+        min-height: 100vh;
+        display: block;
+        background-color: #f7f7f7;
+        padding: 140px 55px 55px 55px;
+    }
+    .login100-form-btn {
+        display: -webkit-box;
+        display: -webkit-flex;
+        display: -moz-box;
+        display: -ms-flexbox;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 0 20px;
+        width: 398%;
+        height: 50px;
+        border-radius: 10px;
+        background: #FF9A31;
+        font-family: Montserrat-Bold;
+        font-size: 12px;
+        color: #fff;
+        line-height: 1.2;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        -webkit-transition: all 0.4s;
+        -o-transition: all 0.4s;
+        -moz-transition: all 0.4s;
+        transition: all 0.4s;
+    }
+
+    .title-area {
+        max-width: 760px;
+        margin: 0 0 120px;
+        display: block;
+        font-weight: bold;
+    }
+    .title-modern {
+        font-size: 40px;
+        margin-bottom: 0;
+        color: white;
+        font-family: Sans-Serif,calibry;
+    }
+    
+</style>
+<body style="overflow: hidden;">
+
+    <div class="app-container app-theme-white body-tabs-shadow">
+        <div class="app-container">
+            <div class="h-100">
+                <div class="h-100 no-gutters row">
+                    <div class="login100-more" style="background-image: url('../img/login-banner/lpIPtn.jpg');">
+                        <h1 style="text-align: center; margin: 17%; color: black; font-weight: bold;">Pinga iFacility</h1>
+                        <h3 style="text-align: center; margin: -16%; color: black;">
+                            Pioneers in Real Estate Software Solutions
+                        </h3>
+
+                        @*<h3 style="text-align: center; margin: -16%; color: black;">
+                            Increase Profitability
+                        </h3>
+
+                        <h3 class="subtitle">
+                            Timely Payment Collection
+                        </h3>
+
+                        <h3 class="subtitle">
+                            Tax Planning (GST)
+                        </h3>
+
+                        <h3 class="subtitle">
+                            Online Payment
+                        </h3>
+                        <h3 class="subtitle">
+                            Process Automation
+                        </h3>*@
+
+                    </div>
+                    <div class="login100-form">
+
+                        <div class="mx-auto app-login-box col-sm-12 col-md-10 col-lg-9" style="text-align: center;  margin-top: -30px;">
+
+
+
+                            @*<span class="font-weight-bold font-size-lg"><img src="~/img/logo.png" class="logo-mid-login" /></span>*@
+                            @*<span class="font-weight-bold font-size-lg"><img src="~/img/logo.png" style="height:105px;width:550px; margin-top:-14px; position:absolute; top:-100px;left:85px;" /></span>*@
+
+                            @*<h6 class="mt-3">No account? <a href="javascript:void(0);" class="text-primary">Sign up now</a></h6>*@
+                            <h4 class="mb-0">
+
+                                <span class="font-weight-normal">Please login to your account.</span>
+                            </h4>
+
+                            <div class="alert alert-danger" id="Error" style="display:none;margin-top: 20px;">
+                                <strong><span class="errormessage"></span></strong>
+                            </div>
+                            <div class="alert alert-success" id="success" style="display:none;margin-top: 20px;">
+                                <strong><span class="errormessage"></span></strong>
+                            </div>
+                            @if (!string.IsNullOrEmpty(ViewBag.error3))
+                            {
+                                <div style="color:red; border:1px solid red; border-radius:5px;padding: 5px 10px;margin: 10px 20px;">
+                                   @ViewBag.error3
+                                </div>
+                            }
+                          
+                            <br />
+                            @using (Html.BeginForm())
+                            {
+
+          
+
+
+                                <div>
+                                    <form class="">
+                                        <div class="form-row">
+                                            <div class="col-md-12">
+                                                <div class="position-relative form-group">
+                                                    @Html.TextBoxFor(model => model.UserName, new { @class = "form-control", @onkeyup = "EntrKey(event)", @placeholder = "Enter user name" })
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="position-relative form-group">
+                                                    @Html.Password("Password", "", new { @class = "form-control", @placeholder = "Password", @onkeyup = "EntrKey(event)" })
+                                                </div>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="d-flex align-items-center">
+
+                                            @*<a href="#" style="margin-top:-10px; font-size:15px;" onclick="location.href='@Url.Action("ForgotPassword", "Security")'">Forgot Password?</a>*@
+                                            @*<a href="#" style="margin-top:-10px; font-size:15px;" onclick="SendCredentias();">SendCerdentilas</a>*@
+
+
+                                            @*<input type="" value="Create" onclick="location.href='@Url.Action("ForgotPassword", "Security")'" />*@
+                                            <div class="container-login100-form-btn">
+
+                                                <input type="submit" class="login100-form-btn" value="Login" />
+                                            </div>
+
+                                        </div>
+                                        @*<div class="d-flex align-items-center">
+                        <h6 style="font-weight:normal">Click<a href="#" style="margin:auto; font-size:15px; font-weight:bold;" onclick="showotptext()"> here </a>for login with otp.</h6>
+
+                    </div>*@
+
+                                    </form>
+                                </div>
+                            }
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <script>
+
+        function EntrKey(e) {
+            if (e.keyCode == 13) {
+                $('.btn-theme').trigger('click');
+            }
+        };
+        $(document).ready(function ()
+        {
+            if ('@ViewBag.erremsg' != '')
+            {
+                $('.errormessage').html('@ViewBag.erremsg');
+                $('#Error').show();
+                $('#EmailAddress').focus();
+
+            }
+            $('#EmailAddress').focus();
+            $('#ShowMessage').hide();
+
+
+        });
+        //function Clear()
+        //{
+        //    $('#EmailAddress').val('');
+        //    $('#EmailAddress').focus();
+        //    $('#Password').val('');
+
+        //}
+
+
+      
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,182 @@
+﻿@model Pinga.Models.Reporting
+@{
+    ViewData["Title"] = "All Invoice Detail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    string ProjectNameExist = Convert.ToString(ViewData["ProjectNameExist"]);
+}
+<style>
+    input#IsActive {
+        vertical-align: text-bottom;
+    }
+
+    .chosen-container-single .chosen-single {
+        color: #999 !important;
+    }
+</style>
+@{
+
+    <div class="panel panel-default">
+        <div class="alert alert-danger" id="Error" style="display: none;margin-top: 20px;">
+            <strong><span class="errormessage"></span></strong>
+        </div>
+        @if (!string.IsNullOrEmpty(ProjectNameExist))
+        {
+            <div class="alert alert-danger" style="margin-top: 20px;">
+                <strong><span>@ProjectNameExist</span></strong>
+            </div>
+        }
+
+        <div class="panel-heading">
+            <h4 class="panel-title">
+               All Invoice Detail
+            </h4>
+        </div>
+        <div class="panel-body">
+            <div class="row clearfix">
+
+                <div class="clearfix"></div>
+                <div class="col-lg-4 col-md-12 col-sm-4 form-group">
+                    <label class="control-label">
+                        Charge Name&nbsp; <label style="color: red;margin-bottom: 0px;">*</label>
+                    </label>
+                    @Html.DropDownListFor(model => model.ChargeID, new SelectList(ViewBag.ChargerNamelist, "Value", "Text"), new { @class = "form-control chosen-select", @maxlength = 500, @rows = "7", @multiple = "true" })
+                </div>
+                <div class="col-lg-4 col-md-12 col-sm-4 form-group">
+                    <label class="control-label">
+                        Select Project&nbsp; <label style="color: red;margin-bottom: 0px;">*</label>
+                    </label>
+                    @Html.DropDownListFor(model => model.ProjectID, new SelectList(ViewBag.ProjectsList, "Value", "Text"), new { @class = "form-control chosen-select", @maxlength = 500, @rows = "7", @multiple = "true", @onchange = "javascript:GetBlockName();" })
+                </div>
+                <div class="col-lg-4 col-md-10  form-group">
+                    <label class="control-label">
+                        Block Name &nbsp; <label style="color: red;margin-bottom: 0px;">*</label>
+                    </label>
+                    @*@Html.HiddenFor(Model => Model.UnitTypeID)*@
+                    <select id="BlockID" name="BlockID" class="form-control" multiple="multiple" onchange="javascript:GetAppNo();"></select>
+                </div>
+                <div class="clearfix"></div>
+
+                <div class="col-lg-4 col-md-10  form-group">
+                    <label class="control-label">
+                        App No &nbsp; <label style="color: red;margin-bottom: 0px;">*</label>
+                    </label>
+                    @*@Html.HiddenFor(Model => Model.UnitTypeID)*@
+                    <select id="AppID" name="AppID" class="form-control" multiple="multiple"></select>
+                </div>
+                <div class="col-lg-4 col-md-12 col-sm-4 form-group">
+                    <label class="control-label">
+                        From&nbsp; <label style="color: red;margin-bottom: 0px;">*</label>
+                    </label>
+                    @Html.TextBox("From", "", new { @class = "datepicker form-control", @maxlength = 500, @style = "width:100%;", @placeholder = "mm-dd-yy", @autocomplete = "off" })
+                </div>
+                <div class="col-lg-4 col-md-12 col-sm-4 form-group">
+                    <label class="control-label">
+                        To&nbsp; <label style="color: red;margin-bottom: 0px;">*</label>
+                    </label>
+                    @Html.TextBox("TO", "", new { @class = "datepicker form-control", @maxlength = 500, @style = "width:100%;", @placeholder = "mm-dd-yy", @autocomplete = "off" })
+                </div>
+                <div class="form-group col-md-12">
+                    <input type="submit" class="btn btn-primary pull-left" onclick="return Viewreport2()" style="margin-right: 12px;" value="View Report" />
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <link href="~/Design/css/jquery-ui.min.css" rel="stylesheet" />
+    <script src="~/Design/js/jquery-ui-1.12.1.min.js"></script>
+    <script src="~/Design/chosen/chosen.jquery.min.js"></script>
+    <link href="~/Design/chosen/chosen.min.css" rel="stylesheet" />
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            //   $('#myTable').DataTable();
+            //  $('.dataTables_length').addClass('bs-select');
+            $('#loader').show();
+            $('.errormessage').html('');
+            $('#Error').hide();
+
+            $('#loader').hide();
+            $(".chosen-select").chosen({
+                placeholder_text: "--Please Select--",
+                no_results_text: "No result found"
+            });
+            $('#BlockID').chosen();
+            $('#AppID').chosen();
+            $("#From").datepicker({ dateFormat: 'mm-dd-yy' });
+            $("#TO").datepicker({ dateFormat: 'mm-dd-yy' });
+        });
+        function GetBlockName() {
+
+            var ProjectID1 = $("#ProjectID").val();
+
+            $.ajax({
+                type: "GET",
+                cache: false,
+                url: "/Report/GetBlockNameByID",
+                data: { 'ProjectID': ProjectID1.join(',') },
+                //data: {}JSON.stringify(ProjectID),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                async: false,
+                success: function (response) {
+
+                    debugger;
+                    var option = "<option value=-1> Select All </option>";
+                    if (response.length > 0) {
+                        debugger;
+                        for (var i = 0; i < response.length; i++) {
+                            debugger;
+                            option = option + "<option value=" + response[i].BlockID + ">" + response[i].BlockName + "</option>";
+                        }
+                    }
+                    else {
+                        var option = "<option value=-1> Select All </option>";
+                        $("#BlockID").html(option);
+                        $('#BlockID').trigger("chosen:updated");
+                    }
+
+                    $("#BlockID").html(option);
+                    $('#BlockID').trigger("chosen:updated");
+
+                },
+
+
+            });
+
+        }
+
+        function GetAppNo() {
+
+            var BlockID1 = $("#BlockID").val();
+            $.ajax({
+                type: "GET",
+                cache: false,
+                url: "/Report/GetAppnoByID",
+                data: { 'BlockID': BlockID1.join(',') },
+                //data: {}JSON.stringify(ProjectID),
+                contentType: "application/json; charset=utf-8",
+                dataType: "json",
+                async: false,
+                success: function (response) {
+                    debugger;
+                    var option = "<option value=-1> Select All </option>";
+                    if (response.length > 0) {
+                        debugger;
+                        for (var i = 0; i < response.length; i++) {
+                            debugger;
+                            option = option + "<option value=" + response[i].AppID + ">" + response[i].AppNo + "</option>";
+                        }
+                    }
+
+                    $("#AppID").html(option);
+                    $('#AppID').trigger("chosen:updated");
+
+                }
+            });
+
+        }
+    </script>
+
+
+}
